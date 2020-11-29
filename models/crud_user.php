@@ -45,7 +45,26 @@ class User
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT * FROM user";
+        $sql = "SELECT * FROM user where grade='user'";
+        $result = $conn->query($sql);
+        return $result;
+    }
+    function list_vendeur()
+    {
+
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "web_mp";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+$sql = "SELECT * FROM user where grade='vendeur'";
         $result = $conn->query($sql);
         return $result;
     }
@@ -67,6 +86,26 @@ class User
         $sql = "SELECT * FROM user WHERE id= '" . $_SESSION['id'] . "' ";
         $result = $conn->query($sql);
         return $result;
+    }
+    function count()
+    {
+
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "web_mp";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $sql = "SELECT COUNT(id) FROM user";
+        $result = $conn->query($sql);
+        $row = $result->fetch_row();
+        return $row[0];
     }
       function connect( $email,$mdp )
     {

@@ -2,6 +2,44 @@
 <html lang="en">
 
 <head>
+<?php
+if(isset($_POST["email"]))
+{
+$email=$_POST["email"];
+$mdp=$_POST["mdp"];
+    $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "web_mp";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $sql = "SELECT * FROM admin WHERE email= '" . $email . "' AND mdp='" . $mdp . "' ";
+        $result = $conn->query($sql);
+        
+    if($result->num_rows > 0)
+    {
+         if ($row = $result->fetch_assoc()) {
+session_start();
+$_SESSION["id"]=$row["id"];
+$_SESSION["nom"]=$row["nom"];
+$_SESSION["email"]=$email;
+
+header("location:profile.php");
+         }
+    }
+    else 
+    {
+        echo "<script>alert('compte inconnue')</script>";
+    }
+}
+
+?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
@@ -29,7 +67,7 @@
                         <h1 class="">Se connecter</h1>
                         <p class="">Connexion</p>
 
-                        <form class="text-left">
+                        <form action="login.php" method="post" class="text-left">
                             <div class="form">
 
                                 <div id="username-field" class="field-wrapper input">
@@ -40,7 +78,7 @@
                                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                         <circle cx="12" cy="7" r="4"></circle>
                                     </svg>
-                                    <input id="username" name="username" type="email" class="form-control"
+                                    <input id="username" name="email" required type="email" class="form-control"
                                         placeholder="email">
                                 </div>
 
@@ -55,7 +93,7 @@
                                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                                         <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                     </svg>
-                                    <input id="password" name="password" type="password" class="form-control"
+                                    <input id="password" name="mdp" required type="password" class="form-control"
                                         placeholder="Password">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -66,7 +104,7 @@
                                 </div>
                                 <div class="d-sm-flex justify-content-between">
                                     <div class="field-wrapper">
-                                        <button type="submit" class="btn btn-primary" value="">Log In</button>
+                                        <button type="submit" class="btn btn-primary" value="">Connexion</button>
                                     </div>
                                 </div>
 
