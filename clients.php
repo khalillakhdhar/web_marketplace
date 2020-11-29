@@ -1,6 +1,10 @@
 <?php
 include("imports.php");
 include("nav.php");
+   
+    include("./models/crud_user.php");
+        $us=new User();
+    $liste=$us->list_users();
 ?>
 <div class="main-container" id="container">
     <div class="overlay"></div>
@@ -21,7 +25,6 @@ include("nav.php");
                                 <thead>
                                     <tr>
                                         <th>Nom</th>
-                                        <th>Prenom</th>
                                         <th>email</th>
                                         <th>tel</th>
                                         <th>Adresse</th>
@@ -30,23 +33,24 @@ include("nav.php");
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <?php
+                                  while ($row = $liste->fetch_assoc()) {
+                                ?>
                                     <tr>
-                                        <td>v1</td>
-                                        <td>v2</td>
-                                        <td>v3</td>
-                                        <td>v3</td>
-                                        <td>v4</td>
+                                        <td><?= $row["nom"] ?></td>
+                                        <td><?= $row["email"] ?></td>
+                                        <td><?= $row["telephone"] ?></td>
+                                        <td><?= $row["adresse"] ?></td>
                                         <td>
                                             <div class="t-dot bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Normal"></div>
                                         </td>
                                         <td class="text-center"> <button class="btn btn-danger">supprimer</button> </td>
                                     </tr>
-
+                                  <?php } ?>
                                 </tbody>
                                 <tfoot>
-                                    <tr>
+                                     <tr>
                                         <th>Nom</th>
-                                        <th>Prenom</th>
                                         <th>email</th>
                                         <th>tel</th>
                                         <th>Adresse</th>
