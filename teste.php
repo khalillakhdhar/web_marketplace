@@ -4,9 +4,9 @@ include("crud_user.php");
 include("crud_categorie.php");
 $cr = new Categorie();
 $us = new User();
-$us->deleteuser(1);
+//$us->deleteuser(1);
 //$us->adduser("email", "mdp", "nom", "telephone", "adresse", "grade");
-$cr->addcategorie("bijoux");
+//$cr->addcategorie("bijoux");
 $x = $us->list_users();
 ?><?php
     if ($x->num_rows > 0) {
