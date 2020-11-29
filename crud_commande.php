@@ -1,11 +1,11 @@
 <?php
 class Commande
 {
-    function addcommande($titre)
+    function addcommande($id_user,$id_produit,$quantite)
     {
         try {
             include('./config/connect.php');
-            $sql = "INSERT INTO `commande`( `id_user`, `id_produit`, `quantite`, `etat`) VALUES ('" . $id_user . "','" . $id_produit . "','" . $quantite . "','" . $etat . "')";
+            $sql = "INSERT INTO `commande`( `id_user`, `id_produit`, `quantite`) VALUES ('" . $id_user . "','" . $id_produit . "','" . $quantite . "')";
             // use exec() because no results are returned
             $conn->exec($sql);
             echo "New record created successfully";
