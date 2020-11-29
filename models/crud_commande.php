@@ -1,11 +1,11 @@
 <?php
-class User
+class Commande
 {
-    function adduser($email, $mdp, $nom, $telephone, $adresse, $grade)
+    function addcommande($id_user,$id_produit,$quantite)
     {
         try {
-            include('./config/connect.php');
-            $sql = "INSERT INTO `user`( `email`, `mdp`, `nom`, `telephone`, `adresse`, `grade`) VALUES ('" . $email . "','" . $mdp . "', '" . $nom . "', '" . $telephone . "', '" . $adresse . "', '" . $grade . "')";
+            include('../config/connect.php');
+            $sql = "INSERT INTO `commande`( `id_user`, `id_produit`, `quantite`) VALUES ('" . $id_user . "','" . $id_produit . "','" . $quantite . "')";
             // use exec() because no results are returned
             $conn->exec($sql);
             echo "New record created successfully";
@@ -13,15 +13,15 @@ class User
             echo $sql . "<br>" . $e->getMessage();
         }
     }
-    function deleteuser($id)
+    function deletecommande($id)
     {
         try {
-            include('./config/connect.php');
+            include('../config/connect.php');
             // set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             // sql to delete a record
-            $sql = "DELETE FROM user WHERE id='" . $id . "'";
+            $sql = "DELETE FROM commande WHERE id='" . $id . "'";
 
             // use exec() because no results are returned
             $conn->exec($sql);
@@ -30,22 +30,22 @@ class User
             echo $sql . "<br>" . $e->getMessage();
         }
     }
-    function list_users()
+    function list_commandes()
     {
 
         $servername = "localhost";
-        $username = "root";
+        $commandename = "root";
         $password = "";
         $dbname = "web_mp";
 
         // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
+        $conn = new mysqli($servername, $commandename, $password, $dbname);
         // Check connection
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT * FROM user";
+        $sql = "SELECT quantite,date,etat,user.email,user.id,user.nom,user.telephone,user.adresse,produit.prix,produit.description,produit.categorie,produit.id_user,produit.titre FROM `commande` ,produit ,user WHERE produit.id=commande.id_produit AND user.id=commande.id_user";
         $result = $conn->query($sql);
         return $result;
     }

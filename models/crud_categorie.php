@@ -4,7 +4,7 @@ class Categorie
     function addcategorie($titre)
     {
         try {
-            include('./config/connect.php');
+            include('../config/connect.php');
             $sql = "INSERT INTO `categorie`( `titre`) VALUES ('" . $titre . "')";
             // use exec() because no results are returned
             $conn->exec($sql);
@@ -16,7 +16,7 @@ class Categorie
     function deletecategorie($id)
     {
         try {
-            include('./config/connect.php');
+            include('../config/connect.php');
             // set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
