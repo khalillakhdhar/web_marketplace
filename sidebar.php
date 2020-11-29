@@ -65,6 +65,9 @@
                            <a href="articles.php"> Articles </a>
                        </li>
                        <li>
+                           <a href="categorie.php"> Catégorie </a>
+                       </li>
+                       <li>
                            <a href="commandes.php"> Commandes </a>
                        </li>
 
