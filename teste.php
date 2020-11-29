@@ -2,7 +2,7 @@
 //include('./config/connect.php');
 include("crud_user.php");
 $us = new User();
-
+$us->deleteuser(1);
 //$us->adduser("email", "mdp", "nom", "telephone", "adresse", "grade");
 $x = $us->list_users();
 ?><?php
