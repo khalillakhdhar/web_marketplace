@@ -5,7 +5,7 @@ class Commande
     {
         try {
             include('./config/connect.php');
-            $sql = "INSERT INTO `commande`( `titre`) VALUES ('" . $titre . "')";
+            $sql = "INSERT INTO `commande`( `id_user`, `id_produit`, `quantite`, `etat`) VALUES ('" . $id_user . "','" . $id_produit . "','" . $quantite . "','" . $etat . "')";
             // use exec() because no results are returned
             $conn->exec($sql);
             echo "New record created successfully";
