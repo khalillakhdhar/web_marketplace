@@ -44,7 +44,7 @@ include("nav.php");
                                         <td>
                                             <div class="t-dot bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Normal"></div>
                                         </td>
-                                        <td class="text-center"> <button class="btn btn-danger">supprimer</button> </td>
+                                        <td class="text-center"> <a href="./controllers/ClientController.php?id=<?=$row["id"]?>&type=client" class="btn btn-danger">supprimer</a> </td>
                                     </tr>
                                   <?php } ?>
                                 </tbody>
