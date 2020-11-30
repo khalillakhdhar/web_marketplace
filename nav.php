@@ -13,12 +13,12 @@
 
            <ul class="navbar-item theme-brand flex-row  text-center">
                <li class="nav-item theme-logo">
-                   <a href="index.html">
+                   <a href="#">
                        <img src="assets/img/90x90.jpg" class="navbar-logo" alt="logo">
                    </a>
                </li>
                <li class="nav-item theme-text">
-                   <a href="index.html" class="nav-link"> CORK </a>
+                   <a href="#" class="nav-link"> Tradi-shop </a>
                </li>
            </ul>
 
