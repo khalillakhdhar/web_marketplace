@@ -37,7 +37,7 @@ $liste = $ca->list_categories();
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <form action="./controllers/CategorieController.php">
+                                        <form method="post" action="./controllers/CategorieController.php">
 
                                             <div class="modal-body">
                                                 Titre <input type="text" placeholder=" votre titre ici"
@@ -71,7 +71,9 @@ $liste = $ca->list_categories();
                                         <td><?= $row["id"] ?></td>
                                         <td><?= $row["titre"] ?></td>
 
-                                        <td class="text-center"> <button class="btn btn-danger">supprimer</button> </td>
+                                        <td class="text-center"> <a
+                                                href="./controllers/CategorieController.php?id=<?= $row["id"] ?>"
+                                                class="btn btn-danger">supprimer</a> </td>
                                     </tr>
                                     <?php } ?>
                                 </tbody>
@@ -80,7 +82,7 @@ $liste = $ca->list_categories();
                                         <th>Id</th>
                                         <th>Titre</th>
 
-                                        <th class="text-center">Action</th>
+                                        <th class=" text-center">Action</th>
                                     </tr>
                                 </tfoot>
                             </table>

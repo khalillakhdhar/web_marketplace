@@ -11,5 +11,7 @@ if (isset($_GET["id"])) {
 if (isset($_POST["titre"])) {
     $titre = $_POST["titre"];
     $ca->addcategorie($titre);
+    echo $titre;
     header("location:..\categorie.php");
 }
+echo "ici";
