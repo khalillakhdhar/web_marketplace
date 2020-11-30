@@ -1,11 +1,11 @@
 <?php
 class Reclamation
 {
-    function addreclamation($id_user,$id_produit,$quantite)
+    function addreclamation($titre, $texte)
     {
         try {
             include('../config/connect.php');
-            $sql = "INSERT INTO `reclamation`( `id_user`, `id_produit`, `quantite`) VALUES ('" . $id_user . "','" . $id_produit . "','" . $quantite . "')";
+            $sql = "INSERT INTO `reclamation`(`titre`, `texte`, `date`) VALUES ('" . $titre . "','" . $texte . "')";
             // use exec() because no results are returned
             $conn->exec($sql);
             echo "New record created successfully";
@@ -45,7 +45,7 @@ class Reclamation
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT quantite,date,etat,user.email,user.id,user.nom,user.telephone,user.adresse,produit.prix,produit.description,produit.categorie,produit.id_user,produit.titre FROM `reclamation` ,produit ,user WHERE produit.id=reclamation.id_produit AND user.id=reclamation.id_user";
+        $sql = "SELECT * from reclamation";
         $result = $conn->query($sql);
         return $result;
     }
