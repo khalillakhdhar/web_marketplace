@@ -19,7 +19,41 @@ $liste = $ca->list_categories();
 
                 <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                     <div class="widget-content widget-content-area br-6">
+
                         <div class="table-responsive mb-4 mt-4">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#exampleModal">
+                                Ajouter </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="./controllers/CategorieController.php">
+
+                                            <div class="modal-body">
+                                                Titre <input type="text" placeholder=" votre titre ici"
+                                                    class="form-control" required name="titre">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Fermer</button>
+                                                <button type="submit" class="btn btn-primary">Ajouter</button>
+                                            </div>
+                                        </form>
+                                        <form action="./controllers/CategorieController.php">
+
+                                    </div>
+                                </div>
+                            </div>
                             <table class="multi-table table table-hover" style="width:100%">
                                 <thead>
                                     <tr>
