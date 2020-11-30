@@ -1,6 +1,9 @@
 <?php
 include("imports.php");
 include("nav.php");
+include("./models/crud_categorie.php");
+$ca = new Categorie();
+$liste = $ca->list_categories();
 ?>
 <div class="main-container" id="container">
     <div class="overlay"></div>
@@ -27,13 +30,16 @@ include("nav.php");
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php
+                                    while ($row = $liste->fetch_assoc()) {
+                                    ?>
                                     <tr>
-                                        <td>v1</td>
-                                        <td>v2</td>
+                                        <td><?= $row["id"] ?></td>
+                                        <td><?= $row["titre"] ?></td>
 
                                         <td class="text-center"> <button class="btn btn-danger">supprimer</button> </td>
                                     </tr>
-
+                                    <?php } ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
