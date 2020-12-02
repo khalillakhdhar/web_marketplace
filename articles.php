@@ -2,8 +2,12 @@
 include("imports.php");
 include("nav.php");
 include("./models/crud_produit.php");
+include("./models/crud_categorie.php");
+
 $pr = new Produit();
 $liste = $pr->list_produits();
+$ca = new Categorie();
+$ls = $ca->list_categories();
 ?>
 <div class="main-container" id="container">
     <div class="overlay"></div>
@@ -20,6 +24,77 @@ $liste = $pr->list_produits();
                 <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                     <div class="widget-content widget-content-area br-6">
                         <div class="table-responsive mb-4 mt-4">
+                            <!-- Button trigger modal -->
+                            <div align="center"> <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#exampleModal">
+                                    Ajouter un produit </button>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <form enctype="multipart/form-data" method="POST" action="articles.php">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Produit</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <table class="table table-borderless">
+                                                    <tr>
+                                                        <td>titre</td>
+                                                        <td>
+                                                            <input class="form-control" type="texte" required
+                                                                name="titre">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>photo</td>
+                                                        <td>
+                                                            <input class="form-control" type="file" required
+                                                                name="photo">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>description</td>
+                                                        <td>
+                                                            <textarea class="form-control" type="texte" required
+                                                                name="description"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>prix</td>
+                                                        <td>
+                                                            <input class="form-control" type="texte" required
+                                                                name="prix">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>catégorie</td>
+                                                        <td>
+                                                            <select class="form-control" name="categorie">
+                                                                <?php
+                                                                while ($row = $ls->fetch_assoc()) {
+                                                                ?> <option value="<?= $row["titre"] ?>">
+                                                                    <?= $row["titre"] ?></option><?php } ?>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+
+                                                </table>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">fermer</button>
+                                                <button type="button" class="btn btn-primary">Ajouter</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                             <table class="multi-table table table-hover" style="width:100%">
                                 <thead>
                                     <tr>
