@@ -3,6 +3,7 @@
        <nav id="sidebar">
            <div class="shadow-bottom"></div>
            <ul class="list-unstyled menu-categories" id="accordionExample">
+               <?php if ($_SESSION['grade'] == 'admin') { ?>
                <li class="menu">
                    <a href="#dashboard" data-active="true" data-toggle="collapse" aria-expanded="true"
                        class="dropdown-toggle">
@@ -32,7 +33,7 @@
                        </li>
                    </ul>
                </li>
-
+               <?php } ?>
                <li class="menu">
                    <a href="#app" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                        <div class="">
@@ -98,12 +99,13 @@
                    </a>
                    <ul class="collapse submenu list-unstyled" id="components" data-parent="#accordionExample">
                        <li>
-                           <a href="profile.php"> Profile admin </a>
+                           <a href="profile.php"> Profile <?= $_SESSION['grade'] ?> </a>
                        </li>
+                       <?php if ($_SESSION['grade'] == 'admin') { ?>
                        <li>
                            <a href="reclamation.php"> reclamation </a>
                        </li>
-
+                       <?php } ?>
                    </ul>
                </li>
 

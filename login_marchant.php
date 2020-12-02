@@ -18,7 +18,7 @@
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT * FROM user WHERE email= '" . $email . "' AND mdp='" . $mdp . "' AND grade='marchant' ";
+        $sql = "SELECT * FROM user WHERE email= '" . $email . "' AND mdp='" . $mdp . "'";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -27,7 +27,7 @@
                 $_SESSION["id"] = $row["id"];
                 $_SESSION["nom"] = $row["nom"];
                 $_SESSION["email"] = $email;
-                $_SESSION["grade"] = "admin";
+                $_SESSION["grade"] = "marchant";
 
                 header("location:profile.php");
             }
@@ -64,7 +64,7 @@
                         <h1 class="">Se connecter</h1>
                         <p class="">Connexion</p>
 
-                        <form action="login.php" method="post" class="text-left">
+                        <form action="login_marchant.php" method="post" class="text-left">
                             <div class="form">
 
                                 <div id="username-field" class="field-wrapper input">
