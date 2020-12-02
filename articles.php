@@ -7,6 +7,9 @@ $targetDir = "products/";
 $fileName = basename($_FILES["file"]["name"]);
 $targetFilePath = $targetDir . $fileName;
 $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+if (isset($_POST['titre'])) {
+}
+
 $pr = new Produit();
 $liste = $pr->list_produits();
 $ca = new Categorie();
