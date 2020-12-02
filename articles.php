@@ -4,8 +4,11 @@ include("nav.php");
 include("./models/crud_produit.php");
 include("./models/crud_categorie.php");
 $pr = new Produit();
-$liste = $pr->list_produits();
-
+if ($_SESSION['grade'] == 'admin') {
+    $liste = $pr->list_produits();
+} else {
+    $liste = $pr->list_mesproduits();
+}
 
 
 $ca = new Categorie();

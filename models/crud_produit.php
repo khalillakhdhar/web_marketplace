@@ -1,7 +1,7 @@
 <?php
 class Produit
 {
-    function addproduit($titre,$photo,$description,$prix,$id_user,$categorie)
+    function addproduit($titre, $photo, $description, $prix, $id_user, $categorie)
     {
         try {
             include('../config/connect.php');
@@ -30,7 +30,7 @@ class Produit
             echo $sql . "<br>" . $e->getMessage();
         }
     }
-        function count()
+    function count()
     {
 
         $servername = "localhost";
@@ -66,6 +66,25 @@ class Produit
         }
 
         $sql = "SELECT * FROM produit";
+        $result = $conn->query($sql);
+        return $result;
+    }
+    function list_mesproduits()
+    {
+
+        $servername = "localhost";
+        $produitname = "root";
+        $password = "";
+        $dbname = "web_mp";
+
+        // Create connection
+        $conn = new mysqli($servername, $produitname, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $sql = "SELECT * FROM produit WHERE id_user='" . $_SESSION['id'] . "'";
         $result = $conn->query($sql);
         return $result;
     }

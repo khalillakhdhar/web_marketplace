@@ -3,7 +3,11 @@ include("imports.php");
 include("nav.php");
 include("./models/crud_commande.php");
 $pr = new Commande;
-$liste = $pr->list_commandes();
+if ($_SESSION['grade'] == 'admin') {
+    $liste = $pr->list_commandes();
+} else {
+    $liste = $pr->list_commandesvendeur();
+}
 ?>
 <div class="main-container" id="container">
     <div class="overlay"></div>

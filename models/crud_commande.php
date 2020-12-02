@@ -69,4 +69,23 @@ class Commande
         $result = $conn->query($sql);
         return $result;
     }
+    function list_commandesvendeur()
+    {
+
+        $servername = "localhost";
+        $commandename = "root";
+        $password = "";
+        $dbname = "web_mp";
+
+        // Create connection
+        $conn = new mysqli($servername, $commandename, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $sql = "SELECT photo,quantite,date,etat,user.email,user.id,user.nom,user.telephone,user.adresse,produit.prix,produit.description,produit.categorie,produit.id_user,produit.titre FROM `commande` ,produit ,user WHERE produit.id=commande.id_produit AND produit.id_user='" . $_SESSION['id'] . "'";
+        $result = $conn->query($sql);
+        return $result;
+    }
 }

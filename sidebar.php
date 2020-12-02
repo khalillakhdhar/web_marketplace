@@ -65,9 +65,10 @@
                        <li>
                            <a href="articles.php"> Articles </a>
                        </li>
-                       <li>
+                       <?php if ($_SESSION['grade'] == 'admin') { ?> <li>
                            <a href="categorie.php"> Catégorie </a>
                        </li>
+                       <?php } ?>
                        <li>
                            <a href="commandes.php"> Commandes </a>
                        </li>
