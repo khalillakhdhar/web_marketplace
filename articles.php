@@ -3,7 +3,10 @@ include("imports.php");
 include("nav.php");
 include("./models/crud_produit.php");
 include("./models/crud_categorie.php");
-
+$targetDir = "products/";
+$fileName = basename($_FILES["file"]["name"]);
+$targetFilePath = $targetDir . $fileName;
+$fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 $pr = new Produit();
 $liste = $pr->list_produits();
 $ca = new Categorie();
