@@ -3,36 +3,24 @@
 
 <head>
     <?php
+
+    include("./config/connect.php");
+
+
     if (isset($_POST["email"])) {
         $email = $_POST["email"];
         $mdp = $_POST["mdp"];
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "web_mp";
-
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
-        $sql = "SELECT * FROM admin WHERE email= '" . $email . "' AND mdp='" . $mdp . "' ";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-            if ($row = $result->fetch_assoc()) {
-                session_start();
-                $_SESSION["id"] = $row["id"];
-                $_SESSION["nom"] = $row["nom"];
-                $_SESSION["email"] = $email;
-                $_SESSION["grade"] = "admin";
-
-                header("location:profile.php");
-            }
-        } else {
-            echo "<script>alert('compte inconnue')</script>";
+        $nom = $_POST["nom"];
+        $adresse = $_POST["adresse"];
+        $telephone = $_POST["telephone"];
+        try {
+            $sql = "INSERT INTO `user`( `email`, `mdp`, `nom`, `telephone`, `adresse`, `grade`) VALUES ('" . $email . "','" . $mdp . "', '" . $nom . "', '" . $telephone . "', '" . $adresse . "','vendeur')";
+            // use exec() because no results are returned
+            $conn->exec($sql);
+            echo "New record created successfully";
+            header("location:login.php");
+        } catch (PDOException $e) {
+            echo $sql . "<br>" . $e->getMessage();
         }
     }
 
@@ -61,13 +49,35 @@
                 <div class="form-container">
                     <div class="form-content">
 
-                        <h1 class="">Se connecter</h1>
-                        <p class="">Administration</p>
-                        <a href="login_marchant.php">Ou en tant que marchant</a>
+                        <h1 class="">S'inscrire</h1>
 
-                        <form action="login.php" method="post" class="text-left">
+
+                        <form action="inscrire.php" method="post" class="text-left">
                             <div class="form">
 
+                                <div id="nom-field" class="field-wrapper input">
+                                    <label for="nom">Nom</label>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-user">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="12" cy="7" r="4"></circle>
+                                    </svg>
+                                    <input id="username" name="nom" required type="text" class="form-control"
+                                        placeholder="Nom">
+                                </div>
+                                <div id="tel-field" class="field-wrapper input">
+                                    <label for="nom">telephone</label>
+
+                                    <input id="phone" name="telephone" required type="text" class="form-control"
+                                        placeholder="Tel">
+                                </div>
+                                <div id="adresse-field" class="field-wrapper input">
+                                    <label for="nom">adresse</label>
+
+                                    <input id="adresse" name="adresse" required type="text" class="form-control"
+                                        placeholder="Adresse">
+                                </div>
                                 <div id="username-field" class="field-wrapper input">
                                     <label for="username">Email</label>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -102,7 +112,7 @@
                                 </div>
                                 <div class="d-sm-flex justify-content-between">
                                     <div class="field-wrapper">
-                                        <button type="submit" class="btn btn-primary" value="">Connexion</button>
+                                        <button type="submit" class="btn btn-primary" value="">Inscription</button>
                                     </div>
                                 </div>
 

@@ -18,7 +18,7 @@
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT * FROM admin WHERE email= '" . $email . "' AND mdp='" . $mdp . "' ";
+        $sql = "SELECT * FROM user WHERE email= '" . $email . "' AND mdp='" . $mdp . "' AND grade='marchant' ";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -62,8 +62,7 @@
                     <div class="form-content">
 
                         <h1 class="">Se connecter</h1>
-                        <p class="">Administration</p>
-                        <a href="login_marchant.php">Ou en tant que marchant</a>
+                        <p class="">Connexion</p>
 
                         <form action="login.php" method="post" class="text-left">
                             <div class="form">

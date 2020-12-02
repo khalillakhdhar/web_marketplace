@@ -3,15 +3,11 @@ include("imports.php");
 include("nav.php");
 include("./models/crud_produit.php");
 include("./models/crud_categorie.php");
-$targetDir = "products/";
-$fileName = basename($_FILES["file"]["name"]);
-$targetFilePath = $targetDir . $fileName;
-$fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
-if (isset($_POST['titre'])) {
-}
-
 $pr = new Produit();
 $liste = $pr->list_produits();
+
+
+
 $ca = new Categorie();
 $ls = $ca->list_categories();
 ?>
@@ -31,7 +27,7 @@ $ls = $ca->list_categories();
                     <div class="widget-content widget-content-area br-6">
                         <div class="table-responsive mb-4 mt-4">
                             <!-- Button trigger modal -->
-                            <div align="center"> <button type="button" class="btn btn-primary" data-toggle="modal"
+                            <div align="center"> <button class="btn btn-primary" data-toggle="modal"
                                     data-target="#exampleModal">
                                     Ajouter un produit </button>
                             </div>
@@ -39,7 +35,8 @@ $ls = $ca->list_categories();
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog">
-                                    <form enctype="multipart/form-data" method="POST" action="articles.php">
+                                    <form enctype="multipart/form-data" method="POST"
+                                        action="controllers/ProduitController.php">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">Produit</h5>
@@ -95,7 +92,7 @@ $ls = $ca->list_categories();
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-dismiss="modal">fermer</button>
-                                                <button type="button" class="btn btn-primary">Ajouter</button>
+                                                <button type="submit" class="btn btn-primary">Ajouter</button>
                                             </div>
                                         </div>
                                     </form>
