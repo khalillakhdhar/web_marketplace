@@ -53,16 +53,7 @@ if ($_SESSION['grade'] == 'admin') {
                                     </tr>
                                     <?php } ?>
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Nom</th>
-                                        <th>Prenom</th>
-                                        <th>email</th>
-                                        <th>tel</th>
-                                        <th>Adresse</th>
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </tfoot>
+
                             </table>
 
                         </div>
